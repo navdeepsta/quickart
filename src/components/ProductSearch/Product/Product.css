@@ -1,0 +1,14 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 25%;
+    margin: 5px;
+    border: 1px solid green;
+    border-radius: 5px;
+}
+
+.product > img {
+    max-width: 100%;
+    height: 75%;
+}
