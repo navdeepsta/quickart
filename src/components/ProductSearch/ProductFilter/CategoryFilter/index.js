@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from "react";
 
-export default function CategoryFilter({ products, onCategoryFilter }) {
-  const [category, setCategory] = useState('Categories');
-
+export default function CategoryFilter({
+  products,
+  onCategoryFilter,
+  category,
+  onUpdateCategory,
+}) {
   const primaryCategories = [
     ...new Set(products.map((product) => product.primary_category)),
   ];
@@ -15,19 +18,19 @@ export default function CategoryFilter({ products, onCategoryFilter }) {
   }, [category]);
 
   const handleSelect = (e) => {
-    setCategory(e.target.value);
+    onUpdateCategory(e.target.value);
   };
 
   const handleClick = () => {
-    setCategory('Categories');
+    onUpdateCategory("");
     onCategoryFilter(products);
   };
 
   return (
     <>
-      <select name='categories' value={category} onChange={handleSelect}>
-        <option value='Categories'>
-          {category === 'Categories' ? 'Categories' : null}
+      <select name="categories" value={category} onChange={handleSelect}>
+        <option value="" disabled hidden>
+          Categories
         </option>
         <option disabled>All Products ({products.length})</option>
         {primaryCategories.map((category) => (
