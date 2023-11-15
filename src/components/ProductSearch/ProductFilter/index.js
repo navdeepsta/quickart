@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SearchFilter from "./SearchFilter";
 import CategoryFilter from "./CategoryFilter";
 import SortFilter from "./SortFilter";
 import BrandFilter from "./BrandFilter";
@@ -17,11 +16,6 @@ export default function ProductFilter({
 
   return (
     <div className="product-filter">
-      <SearchFilter
-        products={originalProducts}
-        onSearchFilter={onProductFilter}
-        category={category}
-      />
       <CategoryFilter
         products={originalProducts}
         onCategoryFilter={onProductFilter}

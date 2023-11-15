@@ -7,14 +7,14 @@ export default function CategoryFilter({
   onUpdateCategory,
 }) {
   const primaryCategories = [
-    ...new Set(products.map((product) => product.primary_category)),
+    ...new Set(products?.map((product) => product.primary_category)),
   ];
 
   useEffect(() => {
-    const filteredProducts = products.filter(
+    const filteredProducts = products?.filter(
       (product) => product.primary_category === category
     );
-    if (filteredProducts.length > 0) onCategoryFilter(filteredProducts);
+    if (filteredProducts?.length > 0) onCategoryFilter(filteredProducts);
   }, [category]);
 
   const handleSelect = (e) => {
@@ -32,7 +32,7 @@ export default function CategoryFilter({
         <option value="" disabled hidden>
           Categories
         </option>
-        <option disabled>All Products ({products.length})</option>
+        <option disabled>All Products ({products?.length})</option>
         {primaryCategories.map((category) => (
           <option key={category} value={category}>
             {category}

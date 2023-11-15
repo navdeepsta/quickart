@@ -7,7 +7,7 @@ export default function SearchFilter({ products, onSearchFilter }) {
   useEffect(() => {
     if (focus) {
       onSearchFilter(
-        products.filter((product) => {
+        products?.filter((product) => {
           return product.title.toLowerCase().includes(searchItem);
         })
       );

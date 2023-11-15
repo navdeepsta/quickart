@@ -1,38 +1,45 @@
 import React, { useEffect, useState } from "react";
 import ProductList from "./ProductList";
-import productData from "./productData.json";
 import ProductFilter from "./ProductFilter";
-export default function ProductSearch() {
- 
-  const [originalProducts, setOriginalProducts] = useState(null);
-  const [products, setProducts] = useState(null);
+import SearchFilter from "./ProductFilter/SearchFilter";
+import ProductDetails from "../ProductDetails";
+
+export default function ProductSearch({ productData }) {
+  const [products, setProducts] = useState(productData);
+  const [product, setProduct] = useState(null);
+  const [displayProduct, setDisplayProduct] = useState(false);
 
   useEffect(() => {
-    setOriginalProducts(productData);
-  }, []);
-
-  useEffect(() => {
-    setProducts(originalProducts);
-  }, [originalProducts]);
+    setProducts(productData);
+  }, [productData]);
 
   const filterProducts = (filteredProducts) => {
     setProducts(filteredProducts);
+    setDisplayProduct(false);
   };
 
-  if (originalProducts) {
-    return (
-      <div>
-        <ProductFilter
-          originalProducts={originalProducts}
-          products={products}
-          onProductFilter={(filteredProducts) =>
-            filterProducts(filteredProducts)
-          }
-        />
-        <ProductList products={products} />
-      </div>
-    );
-  } else {
-    return <h1>Loading</h1>;
-  }
+  const handleClick = ( product ) => {
+    setProduct(product);
+    setDisplayProduct(true);
+  };
+
+  return (
+    <>
+      <SearchFilter products={productData} onSearchFilter={filterProducts} />
+      {displayProduct ? (
+        <ProductDetails product={product} />
+      ) : (
+        <>
+          <ProductFilter
+            originalProducts={productData}
+            products={products}
+            onProductFilter={(filteredProducts) =>
+              filterProducts(filteredProducts)
+            }
+          />
+          <ProductList products={products} onProductClick={(product)=>handleClick(product)} />
+        </>
+      )}
+    </>
+  );
 }
