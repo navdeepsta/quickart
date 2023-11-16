@@ -18,7 +18,7 @@ export default function ProductSearch({ productData }) {
     setDisplayProduct(false);
   };
 
-  const handleClick = ( product ) => {
+  const handleClick = (product) => {
     setProduct(product);
     setDisplayProduct(true);
   };
@@ -27,7 +27,7 @@ export default function ProductSearch({ productData }) {
     <>
       <SearchFilter products={productData} onSearchFilter={filterProducts} />
       {displayProduct ? (
-        <ProductDetails product={product} />
+        <ProductDetails product={product} displayProduct={setDisplayProduct} />
       ) : (
         <>
           <ProductFilter
@@ -37,7 +37,10 @@ export default function ProductSearch({ productData }) {
               filterProducts(filteredProducts)
             }
           />
-          <ProductList products={products} onProductClick={(product)=>handleClick(product)} />
+          <ProductList
+            products={products}
+            onProductClick={(product) => handleClick(product)}
+          />
         </>
       )}
     </>

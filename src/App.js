@@ -1,5 +1,4 @@
 import Main from "./components/Main";
-import ProductDetails from "./components/ProductDetails";
 import "./App.css";
 import {
   RouterProvider,
@@ -12,7 +11,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Main />}></Route>
-      <Route path="/products" element={<Main />}></Route>
+      <Route path="/products" element={<Main />} />
       <Route path="*" element={<h1>404</h1>}></Route>
     </>
   )

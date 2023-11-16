@@ -2,8 +2,8 @@ import React from "react";
 import Product from "../Product";
 import "./ProductList.css";
 
-export default function ProductList(props) {
-  const products = props.products;
+export default function ProductList({products, onProductClick}) {
+ 
   return (
     <div className="product-list">
       {products &&
@@ -11,7 +11,7 @@ export default function ProductList(props) {
           <Product
             key={product.uniq_id}
             product={product}
-            onProductClick={()=>props.onProductClick(product)}
+            onProductClick={()=>onProductClick(product)}
           />
         ))}
     </div>
