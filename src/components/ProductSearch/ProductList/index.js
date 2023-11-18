@@ -3,7 +3,7 @@ import Product from "../Product";
 import Pagination from "./Pagination";
 import "./ProductList.css";
 
-export default function ProductList({ products, onProductClick }) {
+export default function ProductList({ products, onProductClick, addToShoppingCart }) {
   const pageSize = 20; // Set your desired page size
   const [prods, setProds] = useState([]); 
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,6 +29,7 @@ export default function ProductList({ products, onProductClick }) {
               key={product.uniq_id}
               product={product}
               onProductClick={() => onProductClick(product)}
+              addToShoppingCart={addToShoppingCart}
             />
           ))}
       </div>
