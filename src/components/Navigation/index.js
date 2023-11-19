@@ -1,11 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Navigation({shoppingCart}) {
+export default function Navigation({ shoppingCart, state }) {
   return (
     <>
-    <div>
-      Cart : {shoppingCart?.length} items | Total : ${shoppingCart.reduce((a, c) => a + (c.quantity*c.price), 0).toFixed(2)}
-    </div>
+      {!state?.loggedIn ? (
+        <Link to="/login">Login</Link>
+      ) : (
+        <>
+          {state?.user.username}
+          <Link to="/login" state={state}>
+            Profile
+          </Link>
+        </>
+      )}
+      Cart : {shoppingCart?.length} items | Total : $
+      {shoppingCart
+        .reduce((acc, curr) => acc + curr.quantity * curr.price, 0)
+        .toFixed(2)}
     </>
   );
 }
