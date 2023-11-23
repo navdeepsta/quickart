@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Profile from "../../Profile";
 import usersData from "./users.json";
 import "./Login.css";
 
@@ -16,11 +17,17 @@ export default function Login() {
       setLoggedIn(true);
       setUser(state.user);
     }
-  });
+  },[]);
 
-  const handleLogin = () => {
+  const handleLogin = () => {   
+    if(!localStorage.getItem("users"))
+    localStorage.setItem("users", JSON.stringify(usersData))
+
+    let result = localStorage.getItem("users");
+    result = JSON.parse(result)
+   
     // Simulate a simple login check
-    const user = usersData.users.find(
+    const user = result.users.find(
       (user) => user.username === username && user.password === password
     );
 
@@ -37,16 +44,22 @@ export default function Login() {
     navigate("/");
   };
 
+  const updateUser = (updatedUser) => {
+    let result = localStorage.getItem("users");
+    result = JSON.parse(result)
+    const users = result.users.filter(user=>user.username !== updatedUser.username);
+    users.push(updatedUser);
+    localStorage.setItem("users", JSON.stringify({users:users}));
+    setUser(updatedUser);
+  }
+
   return (
     <>
       {loggedIn ? (
-        <>
-          <h1>Welcome, {user?.username}!</h1>
-          <Link to="/" state={{ loggedIn: loggedIn, user: user }}>
-            Homepage
-          </Link>
-          <button onClick={handleLogout}>SignOut</button>
-        </>
+           <Profile user={user} 
+           loggedIn={loggedIn} 
+           updateUser={(updatedUser)=>updateUser(updatedUser)}
+           onLogout={handleLogout}/> 
       ) : (
         <div className="login-container">
           <form>
