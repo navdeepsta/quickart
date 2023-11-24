@@ -8,7 +8,7 @@ export default function Navigation({ shoppingCart, state }) {
         <Link to="/login">Login</Link>
       ) : (
         <>
-          {state?.user.firstName}
+          {state?.user.firstName ? state?.user.firstName : state?.user.username}
           <Link to="/login" state={state}>
             Profile
           </Link>

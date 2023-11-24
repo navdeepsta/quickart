@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import Profile from "../../Profile";
 import usersData from "./users.json";
 import "./Login.css";
@@ -24,7 +24,7 @@ export default function Login() {
     localStorage.setItem("users", JSON.stringify(usersData))
 
     let result = localStorage.getItem("users");
-    result = JSON.parse(result)
+    result = JSON.parse(result);
    
     // Simulate a simple login check
     const user = result.users.find(
@@ -89,9 +89,11 @@ export default function Login() {
             <button className="login" onClick={handleLogin}>
               Login
             </button>
+            <Link to={"/signup"}>
             <button type="button" className="register">
-              Register
+               Register
             </button>
+            </Link>
           </form>
         </div>
       )}
