@@ -14,10 +14,9 @@ export default function Navigation({ shoppingCart, state }) {
           </Link>
         </>
       )}
-      Cart : {shoppingCart?.length} items | Total : $
-      {shoppingCart
-        .reduce((acc, curr) => acc + curr.quantity * curr.price, 0)
-        .toFixed(2)}
+      <Link to="/cart" state={{ cart : shoppingCart }}>
+        Cart : {shoppingCart?.length} items 
+      </Link>
     </>
   );
 }

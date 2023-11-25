@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductSearch from "../ProductSearch";
 import Navigation from "../Navigation";
 import { useLocation } from "react-router-dom";
+import { userCart } from "../../Util";
 import data from "./data.json";
 
 export default function Main() {
@@ -10,10 +11,11 @@ export default function Main() {
 
   useEffect(() => {
     setProductData(data);
+    setShoppingCart(userCart.fetchCart());
   }, []);
 
   const { state } = useLocation();
-
+  
   return (
     <>
       <Navigation shoppingCart={shoppingCart} state={state} />
