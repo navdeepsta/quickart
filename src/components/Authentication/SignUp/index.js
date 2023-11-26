@@ -81,13 +81,13 @@ export default function SignUp() {
             Register
           </button>
           <p>Already have account?</p>
-          <Link to={"/login"}>Login</Link>
+          <Link to={"/signin"}>Login</Link>
         </form>
       ) : (
         <div className="success-message">
           <p>Registration successful!</p>
           <p>
-            <Link to={"/login"} onClick={() => setRegistrationSuccess(false)}>
+            <Link to={"/signin"} onClick={() => setRegistrationSuccess(false)}>
               Click here to login
             </Link>
           </p>

@@ -1,5 +1,5 @@
 import Main from "./components/Main";
-import Login from "./components/Authentication/Login";
+import SignIn from "./components/Authentication/SignIn";
 import SignUp from "./components/Authentication/SignUp";
 import Cart from "./components/Cart";
 
@@ -16,7 +16,7 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Main />}></Route>
       <Route path="/products" element={<Main />} />
-      <Route path="/login" element={<Login />}/>
+      <Route path="/signin" element={<SignIn />}/>
       <Route path="/signup" element={<SignUp />}/>
       <Route path="/cart" element={<Cart />}/>
       <Route path="*" element={<h1>404</h1>}></Route>
