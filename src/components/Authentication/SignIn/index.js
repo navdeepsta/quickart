@@ -111,7 +111,6 @@ export default function SignIn() {
                   label="Username"
                   type="textfield"
                   name="username"
-                  autoComplete="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   autoFocus
@@ -126,7 +125,7 @@ export default function SignIn() {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  autoComplete="current-password"
+                  
                 />
             
                 <Button
@@ -141,6 +140,13 @@ export default function SignIn() {
                   <Grid item>
                     <Link to={"/signup"} variant="body2">
                       {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item>
+                    <Link to={"/"} variant="body2">
+                      <Button variant="outlined" size="small">Back</Button>
                     </Link>
                   </Grid>
                 </Grid>

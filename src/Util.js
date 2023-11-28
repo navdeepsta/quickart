@@ -14,8 +14,9 @@ export const userCart = {
 
     fetchCart : () => {
         const cart = localStorage.getItem("cart");
-        const result = JSON.parse(cart);
-        return result.cart;
+        if(cart) return JSON.parse(cart).cart;
+        else
+        return [];
     },
 
     removeFromCart : ( item ) => {
