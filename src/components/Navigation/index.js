@@ -15,7 +15,7 @@ export default function Navigation({ shoppingCart, state }) {
         </>
       )}
       <Link to="/cart" state={{ cart : shoppingCart }}>
-        Cart : {shoppingCart?.length} items  
+        Cart : {shoppingCart?.reduce((acc,curr)=> acc + curr.quantity, 0)} items  
       </Link>
     </>
   );
