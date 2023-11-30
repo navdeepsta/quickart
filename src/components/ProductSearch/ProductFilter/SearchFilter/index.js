@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 import "./SearchFilter.css";
 export default function SearchFilter({ products, onSearchFilter }) {
   const [searchItem, setSearchItem] = useState("");
@@ -12,7 +14,7 @@ export default function SearchFilter({ products, onSearchFilter }) {
         })
       );
     }
-  }, [searchItem]);
+  });
 
   const handleBlur = () => {
     setFocus(false);
@@ -21,14 +23,24 @@ export default function SearchFilter({ products, onSearchFilter }) {
 
   return (
     <div className="search">
-      <input
-        type="text"
-        placeholder="Search products"
-        onChange={(e) => setSearchItem(e.target.value)}
-        onFocus={() => setFocus(true)}
-        onBlur={handleBlur}
-        value={searchItem}
-      />
+      <Box
+        sx={{
+          width: 500,
+          maxWidth: "100%",
+        }}
+        alignContent="center"
+      >
+        <TextField
+          fullWidth
+          type="textfield"
+          label="Search products"
+          id="search"
+          onChange={(e) => setSearchItem(e.target.value)}
+          onFocus={() => setFocus(true)}
+          onBlur={handleBlur}
+          value={searchItem}
+        />
+      </Box>
     </div>
   );
 }
