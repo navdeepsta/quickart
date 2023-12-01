@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CategoryFilter from "./CategoryFilter";
 import SortFilter from "./SortFilter";
 import BrandFilter from "./BrandFilter";
+import Stack from "@mui/material/Stack";
 
 export default function ProductFilter({
   originalProducts,
@@ -16,18 +17,24 @@ export default function ProductFilter({
 
   return (
     <div className="product-filter">
-      <CategoryFilter
-        products={originalProducts}
-        onCategoryFilter={onProductFilter}
-        category={category}
-        onUpdateCategory={(updatedCategory) => updateCategory(updatedCategory)}
-      />
-      <SortFilter products={products} onSortFilter={onProductFilter} />
+      <Stack direction="row" spacing={1} justifyContent="center" my={1}>
+        <CategoryFilter
+          products={originalProducts}
+          onCategoryFilter={onProductFilter}
+          category={category}
+          onUpdateCategory={(updatedCategory) =>
+            updateCategory(updatedCategory)
+          }
+        />
+        <SortFilter products={products} onSortFilter={onProductFilter} />
+      </Stack>
+      <Stack  direction="row" justifyContent="center" my={1}>
       <BrandFilter
         originalProducts={originalProducts}
         category={category}
         onBrandFilter={onProductFilter}
       />
+      </Stack>
     </div>
   );
 }

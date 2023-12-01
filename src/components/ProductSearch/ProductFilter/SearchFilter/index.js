@@ -39,6 +39,7 @@ export default function SearchFilter({ products, onSearchFilter }) {
           onFocus={() => setFocus(true)}
           onBlur={handleBlur}
           value={searchItem}
+          size="small"
         />
       </Box>
     </div>

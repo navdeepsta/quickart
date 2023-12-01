@@ -1,4 +1,9 @@
 import React, { useEffect } from "react";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import { FormControl } from "@mui/material";
+import Button from "@mui/material/Button";
 
 export default function CategoryFilter({
   products,
@@ -28,18 +33,31 @@ export default function CategoryFilter({
 
   return (
     <>
-      <select name="categories" value={category} onChange={handleSelect}>
-        <option value="" disabled hidden>
-          Categories
-        </option>
-        <option disabled>All Products ({products?.length})</option>
-        {primaryCategories.map((category) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
-      <button onClick={handleClick}>All Products</button>
+      <FormControl sx={{ minWidth: 150 }} size="small">
+        <InputLabel id="categories">Categories</InputLabel>
+        <Select
+          labelId="categories"
+          id="categories"
+          value={category}
+          label="Categories"
+          onChange={handleSelect}
+        >
+          <MenuItem disabled>All Products ({products?.length})</MenuItem>
+          {primaryCategories.map((category) => (
+            <MenuItem key={category} value={category}>
+              {category}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <Button
+        variant="outlined"
+        size="small"
+        color="primary"
+        onClick={handleClick}
+      >
+        All Items
+      </Button>
     </>
   );
 }
