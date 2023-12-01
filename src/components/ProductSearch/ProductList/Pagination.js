@@ -1,4 +1,5 @@
 import React from "react";
+import "./Pagination.css";
 
 export default function Pagination({
   currentPage,
@@ -30,9 +31,9 @@ export default function Pagination({
   const pageNumbers = generatePageNumbers();
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className="pagination">
       {/* Pagination buttons */}
-      <button
+      <button 
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
