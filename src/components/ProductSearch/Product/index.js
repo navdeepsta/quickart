@@ -12,8 +12,8 @@ export default function Product({
   product,
   onProductClick,
   addToShoppingCart,
-}) {
-  const { title, main_image, price } = product;
+}) { 
+  const { title, main_image, price, availability } = product;
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -53,12 +53,11 @@ export default function Product({
       <Stack direction="row" justifyContent="center">
         <Typography
           gutterBottom
-          variant="h5"
+          variant="h6"
           component="div"
-          width="25%"
           padding={1}
         >
-          ${price}
+          {availability === "InStock" ? `$${price}` : "Out of stock"}
         </Typography>
       </Stack>
       <Stack spacing={0.5} justifyContent="center" my={1} mx={1}>
@@ -66,6 +65,7 @@ export default function Product({
           size="medium"
           color="primary"
           variant="contained"
+          disabled={availability !== "InStock"}
           onClick={handleClick}
         >
           Add To Cart
