@@ -1,0 +1,29 @@
+.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.main-image {
+  width: 50%;
+  height: 250px;
+  border-radius: 5px;
+}
+
+.image-slider {
+  width: 30%;
+  margin-top: 50px;
+}
+
+.image-slider-images {
+  margin: 2px;
+}
+
+.image-slider img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  border: 0.5px solid grey;
+}
