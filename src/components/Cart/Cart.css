@@ -1,0 +1,52 @@
+.item-container {
+  border: 1px solid rgb(216, 201, 201);
+  border-radius: 5px;
+  margin-bottom: 4px;
+  display: flex;
+}
+.item-container > img {
+  width: 100px;
+  height: 100px;
+}
+
+.item-content {
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.item-header {
+  position: relative;
+}
+
+.item-title {
+  float: left;
+}
+
+.item-remove {
+  float: right;
+}
+
+.item-remove:hover {
+  cursor: pointer;
+}
+
+.item-price {
+  margin-top: 5px;
+  text-align: left;
+}
+
+.total-container {
+  width: 100%;
+  font-size: 2em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.empty-cart {
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+}
