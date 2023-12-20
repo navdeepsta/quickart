@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./SignUp.css";
+import { ErrorOutlineRounded } from "@mui/icons-material";
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
@@ -38,10 +39,12 @@ export default function SignUp() {
     event.preventDefault();
     const { username, email, password, confirmPassword } = formData;
     if (username && email && password && confirmPassword) {
-      let result = localStorage.getItem("users");
-      result = JSON.parse(result);
-      result.users.push(formData);
-      localStorage.setItem("users", JSON.stringify({ users: result.users }));
+      let storedUsers = JSON.parse(localStorage.getItem("users")) || {
+        users: [],
+      };
+      storedUsers.users.push(formData);
+
+      localStorage.setItem("users", JSON.stringify(storedUsers));
       setRegistrationSuccess(true);
     } else {
       alert("Please fill out the form");
