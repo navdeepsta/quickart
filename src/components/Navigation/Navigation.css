@@ -1,0 +1,14 @@
+.navigation {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+  background-color: rgb(250, 250, 250);
+  padding: 10px;
+}
+
+.cart {
+  display: flex;
+  align-items: start;
+  font-size: small;
+  color: blue;
+}
