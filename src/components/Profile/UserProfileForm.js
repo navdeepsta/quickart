@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import "./UserProfileForm.css";
 
-const UserProfileForm = ({ user, onSave }) => {  
+const UserProfileForm = ({ user, onSave }) => {
   const [updatedUser, setUpdatedUser] = useState({ ...user });
   const [file, setFile] = useState();
-  const {
-    firstName,
-    lastName,
-    profilePic,
-    address,
-    mobileNumber,
-    email,
-    paymentDetails,
-  } = updatedUser;
+  const { firstName, lastName, profilePic, mobileNumber, email } = updatedUser;
 
   useEffect(() => {
     if (file) {
@@ -38,72 +34,58 @@ const UserProfileForm = ({ user, onSave }) => {
   };
 
   return (
-    <div>
+    <div className="profile-form-container">
+      <TextField type="file"  onChange={handleImageChange} />
       <div>
-        <h2>Add Image:</h2>
-        <input type="file" onChange={handleImageChange} />
-        <img
+        {file ? <img
           src={profilePic}
           alt="Profile"
-          style={{ width: 200, height: 200 }}
-        />
+          style={{ width: 150, height: 150 }}
+        /> : <AccountCircleRoundedIcon fontSize="large" color="primary"/>}
       </div>
-      <label>
-        First Name:
-        <input
+      <div>
+        <TextField
           type="text"
           name="firstName"
+          placeholder="Firstname"
+          aria-label="Firstname"
           value={firstName ? firstName : ""}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        Last Name:
-        <input
+      </div>
+      <div>
+        <TextField
           type="text"
           name="lastName"
+          placeholder="Lastname"
+          aria-label="Lastname"
           value={lastName ? lastName : ""}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        Address:
-        <input
-          type="text"
-          name="address"
-          value={address ? address : ""}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Mobile:
-        <input
+      </div>
+      <div>
+        <TextField
           type="text"
           name="mobileNumber"
+          placeholder="Mobile"
+          aria-label="Mobile"
           value={mobileNumber ? mobileNumber : ""}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        Email:
-        <input
+      </div>
+      <div>
+        <TextField
           type="text"
           name="email"
+          placeholder="Email"
+          aria-label="Email"
           value={email ? email : ""}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        Payment Details:
-        <input
-          type="text"
-          name="paymentDetails"
-          value={paymentDetails ? paymentDetails : ""}
-          onChange={handleChange}
-        />
-      </label>
-
-      <button onClick={handleSave}>Save</button>
+      </div>
+      <div>
+        <Button onClick={handleSave} variant="outlined">Save</Button>
+      </div>
     </div>
   );
 };

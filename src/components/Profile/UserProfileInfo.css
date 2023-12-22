@@ -1,0 +1,20 @@
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.profile-container div {
+    margin: 10px;
+}
+
+.profile-container img {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+}
+
+.icon {
+    margin-right: 5px;
+}
