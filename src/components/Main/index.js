@@ -3,9 +3,10 @@ import ProductSearch from "../ProductSearch";
 import Navigation from "../Navigation";
 import { useLocation } from "react-router-dom";
 import { userCart } from "../../Util";
+import { connect } from "react-redux";
 import data from "./data.json";
 
-export default function Main() {
+function Main(props) {
   const [productData, setProductData] = useState(null);
   const [shoppingCart, setShoppingCart] = useState([]);
 
@@ -15,10 +16,10 @@ export default function Main() {
   }, []);
 
   const { state } = useLocation();
-  
+
   return (
     <>
-      <Navigation shoppingCart={shoppingCart} state={state} />
+      <Navigation state={state} />
       {productData ? (
         <ProductSearch
           productData={productData}
@@ -30,3 +31,12 @@ export default function Main() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+
+export default connect(mapStateToProps)(Main);
+ 

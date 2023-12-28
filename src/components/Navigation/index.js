@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { connect } from "react-redux";
 import "./Navigation.css";
 
-export default function Navigation({ shoppingCart, state }) {
+function Navigation({ shoppingCart, state }) {
   return (
     <nav className="navigation">
       {!state?.loggedIn ? (
@@ -24,11 +25,20 @@ export default function Navigation({ shoppingCart, state }) {
         </>
       )}
       <div className="cart">
-        <Link to="/cart" state={{ cart: shoppingCart }} underline="none">
+        <Link to="/cart" underline="none">
           <AddShoppingCartIcon fontSize="medium" color="primary" />
-        </Link>{" "}
+        </Link>
         {shoppingCart?.reduce((acc, curr) => acc + curr.quantity, 0)}
       </div>
     </nav>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    shoppingCart: state.cart,
+  };
+};
+
+export default connect(mapStateToProps)(Navigation);
+ 

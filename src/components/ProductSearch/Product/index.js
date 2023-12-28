@@ -6,13 +6,16 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import { connect } from "react-redux";
+import { setCart } from "../../Redux";
+
 import "./Product.css";
 
-export default function Product({
+function Product({
   product,
   onProductClick,
-  addToShoppingCart,
-}) { 
+  setShoppingCart,
+}) {
   const { title, main_image, price, availability } = product;
   const [quantity, setQuantity] = useState(0);
 
@@ -28,7 +31,7 @@ export default function Product({
   useEffect(() => {
     const item = { ...product, quantity };
     userCart.saveToCart(item);
-    addToShoppingCart(userCart.fetchCart());
+    setShoppingCart(userCart.fetchCart());
   }, [quantity]);
 
   const handleClick = () => {
@@ -51,12 +54,7 @@ export default function Product({
         </CardContent>
       </Stack>
       <Stack direction="row" justifyContent="center">
-        <Typography
-          gutterBottom
-          variant="h6"
-          component="div"
-          padding={1}
-        >
+        <Typography gutterBottom variant="h6" component="div" padding={1}>
           {availability === "InStock" ? `$${price}` : "Out of stock"}
         </Typography>
       </Stack>
@@ -74,3 +72,11 @@ export default function Product({
     </Card>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setShoppingCart: (cart) => dispatch(setCart(cart)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Product);
