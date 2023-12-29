@@ -1,17 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { userCart } from "../../Util";
+import { connect } from "react-redux";
+import { setCart } from "../Redux";
 import "./PageDetails.css";
-export default function ProductDetails({ product, displayProduct }) {
+
+function ProductDetails({ product, displayProduct, setShoppingCart }) {
   const images = product?.images?.split("|");
   const [selectedImage, setSelectedImage] = useState(images[0]);
-
+  const [quantity, setQuantity] = useState(product.quantity);
+  
   const handleImageSelect = (image) => {
     setSelectedImage(image);
+  };
+
+  useEffect(() => {
+    const item = { ...product, quantity };
+    userCart.saveToCart(item);
+    setShoppingCart(userCart.fetchCart());
+  }, [quantity]);
+
+  const handleClick = () => {
+    setQuantity((prev) => prev + 1);
   };
 
   const settings = {
@@ -91,7 +106,7 @@ export default function ProductDetails({ product, displayProduct }) {
                   </span>
                   <br />
                   <Box mt={2}>
-                  <Button variant="outlined" >Add To Cart</Button>
+                  <Button variant="outlined" onClick={handleClick}>Add To Cart</Button>
                   </Box>
                 </>
               </Box>
@@ -102,3 +117,11 @@ export default function ProductDetails({ product, displayProduct }) {
     );
   }
 }
+ 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setShoppingCart: (cart) => dispatch(setCart(cart)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ProductDetails);

@@ -8,7 +8,6 @@ import "./ProductList.css";
 export default function ProductList({
   products,
   onProductClick,
-  addToShoppingCart,
 }) {
   const pageSize = 20; // Set your desired page size
   const [prods, setProds] = useState([]);
@@ -38,7 +37,6 @@ export default function ProductList({
                   key={product.uniq_id}
                   product={product}
                   onProductClick={() => onProductClick(product)}
-                  addToShoppingCart={addToShoppingCart}
                 />
               </Grid>
             ))}

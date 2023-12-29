@@ -29,12 +29,12 @@ function Product({
   }, []);
 
   useEffect(() => {
-    const item = { ...product, quantity };
-    userCart.saveToCart(item);
+    product.quantity = quantity;
+    userCart.saveToCart(product);
     setShoppingCart(userCart.fetchCart());
   }, [quantity]);
 
-  const handleClick = () => {
+  const handleClick = () => { 
     setQuantity((prev) => prev + 1);
   };
 

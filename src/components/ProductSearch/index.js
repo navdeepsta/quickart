@@ -4,7 +4,7 @@ import ProductFilter from "./ProductFilter";
 import SearchFilter from "./ProductFilter/SearchFilter";
 import ProductDetails from "../ProductDetails";
 
-export default function ProductSearch({ productData, addToShoppingCart }) {
+export default function ProductSearch({ productData }) {
   const [products, setProducts] = useState(productData);
   const [product, setProduct] = useState(null);
   const [displayProduct, setDisplayProduct] = useState(false);
@@ -40,7 +40,6 @@ export default function ProductSearch({ productData, addToShoppingCart }) {
           <ProductList
             products={products}
             onProductClick={(product) => handleClick(product)}
-            addToShoppingCart={addToShoppingCart}
           />
         </>
       )}
