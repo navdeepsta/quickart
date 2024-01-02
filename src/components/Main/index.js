@@ -6,13 +6,11 @@ import { userCart } from "../../Util";
 import { connect } from "react-redux";
 import data from "./data.json";
 
-function Main(props) {
+function Main() {
   const [productData, setProductData] = useState(null);
-  const [shoppingCart, setShoppingCart] = useState([]);
 
   useEffect(() => {
     setProductData(data);
-    setShoppingCart(userCart.fetchCart());
   }, []);
 
   const { state } = useLocation();
@@ -21,10 +19,7 @@ function Main(props) {
     <>
       <Navigation state={state} />
       {productData ? (
-        <ProductSearch
-          productData={productData}
-          addToShoppingCart={setShoppingCart}
-        />
+        <ProductSearch productData={productData} />
       ) : (
         <h1>Loading...</h1>
       )}
@@ -39,4 +34,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Main);
- 

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import "./SearchFilter.css";
-export default function SearchFilter({ products, onSearchFilter }) {
+import Button from "@mui/material/Button";
+import TuneIcon from '@mui/icons-material/Tune';
+import "./SearchFilter.css"; 
+
+export default function SearchFilter({ products, onSearchFilter, onFilter }) {
   const [searchItem, setSearchItem] = useState("");
   const [focus, setFocus] = useState(false);
 
@@ -29,6 +32,8 @@ export default function SearchFilter({ products, onSearchFilter }) {
           maxWidth: "100%",
         }}
         alignContent="center"
+        display="flex"
+        my={1}
       >
         <TextField
           fullWidth
@@ -41,6 +46,7 @@ export default function SearchFilter({ products, onSearchFilter }) {
           value={searchItem}
           size="small"
         />
+        <Button onClick={onFilter} variant="outlined"><TuneIcon /></Button>
       </Box>
     </div>
   );
