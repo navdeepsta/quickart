@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import ClearIcon from "@mui/icons-material/Clear";
+import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setCart } from "../Redux";
@@ -13,6 +14,24 @@ function Cart({ cart, setShoppingCart }) {
   const handleClick = (item) => {
     userCart.removeFromCart(item);
     setShoppingCart(userCart.fetchCart());
+  };
+
+  const handleQuantity = (item, type) => {
+    let updatedItem = item;
+    if (type === "add") {
+      updatedItem = { ...item, quantity: item.quantity + 1 };
+    }
+    if (type === "remove" && item.quantity > 1) {
+      updatedItem = { ...item, quantity: item.quantity - 1 };
+    }
+
+    const updatedCart = cart.map((product) => {
+      if (product.uniq_id === item.uniq_id) {
+        return updatedItem;
+      }
+      return product;
+    });
+    setShoppingCart(updatedCart);
   };
 
   return (
@@ -41,10 +60,27 @@ function Cart({ cart, setShoppingCart }) {
                           />
                         </span>
                       </div>
-                      <p className="item-price" key={item.uniq_id}>
+                      <p className="item-price">
                         {item.price} * {item.quantity} = $
-                        {item.price * item.quantity}{" "}
+                        {(item.price * item.quantity).toFixed(2)}
                       </p>
+                      <div className="item-quantity">
+                        <Button
+                          variant="contained"
+                          size="small"
+                          onClick={() => handleQuantity(item, "remove")}
+                        >
+                          -
+                        </Button>
+                        <Typography>{item.quantity}</Typography>
+                        <Button
+                          variant="contained"
+                          size="small"
+                          onClick={() => handleQuantity(item, "add")}
+                        >
+                          +
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 ))
