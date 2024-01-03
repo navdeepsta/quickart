@@ -106,7 +106,7 @@ function ProductDetails({ product, displayProduct, setShoppingCart }) {
                   </span>
                   <br />
                   <Box mt={2}>
-                  <Button variant="outlined" onClick={handleClick}>Add To Cart</Button>
+                  <Button variant="outlined" onClick={handleClick} disabled={product.availability !== "InStock"}>Add To Cart</Button>
                   </Box>
                 </>
               </Box>
