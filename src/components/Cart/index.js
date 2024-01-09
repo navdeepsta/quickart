@@ -99,7 +99,7 @@ function Cart({ cart, setShoppingCart }) {
               </span>
             </div>
             <div style={{ textAlign: "center" }}>
-              <Button variant="outlined">Checkout</Button>
+              <Button variant="outlined" disabled={cart.length===0}>Checkout</Button>
             </div>
           </Grid>
         </Grid>
