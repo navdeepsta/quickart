@@ -98,9 +98,20 @@ function Cart({ cart, setShoppingCart }) {
                   .toFixed(2)}
               </span>
             </div>
-            <div style={{ textAlign: "center" }}>
-              <Button variant="outlined" disabled={cart.length===0}>Checkout</Button>
-            </div>
+
+            {cart.length === 0 ? (
+              <div style={{ textAlign: "center" }}>
+                <Button variant="outlined" disabled>
+                  Checkout
+                </Button>
+              </div>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <Link to={"/checkout"}>
+                  <Button variant="outlined">Checkout</Button>
+                </Link>
+              </div>
+            )}
           </Grid>
         </Grid>
       </Box>
